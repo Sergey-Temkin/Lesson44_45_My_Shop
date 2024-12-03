@@ -1,26 +1,29 @@
 # Lesson44_45_My_Shop
 
-08.10.2024-00:45
+08.10.2024-01:05
 
 ## Commands schema on VScode:
-pip install psycopg2-binary
-pip install dj-database-url
+add products on admin tool
+pip install python-dotenv
 pip freeze > requirements.txt
+in myshop/settings paste:
 
-In Myshop/Setting under the DATABASE line paste:
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DATABASES = {
     'default': dj_database_url.config(
-        # Replace this value with your local database's connection string(External Database URL-In render).
-        default='postgresql://my_shop_01rp_user:ObpvFuAMo6Fhu6eaoO5HrgganaeC5Czt@dpg-ct70nu52ng1s7398h1sg-a.frankfurt-postgres.render.com/my_shop_01rp',
+        default=os.getenv('DB_URL'),
         conn_max_age=600
     )
 }
 
-py manage.py runserver
-py manage.py migrate
-py manage.py createsuperuser
-
+create .env file and fill the next fields:
+SECRET_KEY=
+DB_URL=
+ 
 ## Virtual Environment
 python -m venv venv
 source venv/Scripts/activate
